@@ -27,9 +27,6 @@ def normalize(image):
     img *= 255.0/img.max()
     return img.astype(np.uint8)
 
-# simulate measurement (d=Gm + \eta)
-# also normalize 2d FFT
-# fftshit resolves wrapping of spectral components (0..2pi to -pi..pi)
 blr = (1.0/(H.shape[0]*H.shape[1]))*np.fft.fftshift(np.fft.ifft2(H*P).real)
 # add noise with standard deviation of 0.1
 blr = blr+np.random.randn(blr.shape[0],blr.shape[1])*0.1
